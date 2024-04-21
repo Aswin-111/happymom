@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import axios from "@/app/instance"
 
 import React, { useEffect, useState } from "react";
 
@@ -11,16 +11,13 @@ function page() {
   const [users_data, setUsersData] = useState({});
   const [subordinate_data, setSubordinateData] = useState([]);
   const [link, setLink] = useState("");
+  const [popup, setPopup] = useState(true)
   const router = useRouter()
   useEffect(() => {
     (async function () {
       try{
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/home`,
-        {
-          subscriber_id: "10001",
-        }
-      );
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/home`);
 
       console.log(response.data);
       // console.log(response.data.subordinate_data)
@@ -71,8 +68,8 @@ function page() {
       </div>
 
       <div className="px-3">
-        <div className="w-full  flex justify-around items-center mt-[5rem]">
-          <div className="w-full flex flex-col justify-center h-[30vh] bg-[#3C3C3C] rounded-md px-5">
+        <div className="w-full flex justify-around items-center mt-[5rem]">
+          <div className="w-full  flex flex-col justify-center h-[30vh] bg-[#3C3C3C] rounded-md px-5">
             <h2 className="mt-3 text-[#C6C6C6] font-semibold  drop-shadow-2xl ">
               Happymom
             </h2>
@@ -117,15 +114,16 @@ function page() {
                       return (
                         <tr
                           key={ind}
-                          className="border-b border-neutral-200 dark:border-white/10 bg-[#5985C6] rounded-xl"
+                          className="border-b border-neutral-200 dark:border-white/10 shadow-xl  rounded-xl"
                         >
-                          <td className="whitespace-nowrap  px-2 py-2 flex items-center font-semibold">
+                          <td className="whitespace-nowrap  px-2 py-2 flex items-center font-semibold text-black mt-3">
                             {" "}
-                            <div className="w-10 h-10 bg-black rounded-full mr-2"></div>
+                            
                             {i.name}
                           </td>
-                          <td className="whitespace-nowrap  px-6 py-2 font-semibold">
-                            {i.position_id}
+                          <td className="whitespace-nowrap  px-6 py-2 font-semibold text-black ">
+                            {/* {i.position_id} */}
+                            Manager
                           </td>
                         </tr>
                       );
@@ -137,7 +135,34 @@ function page() {
           </div>
         </div>
       </div>
+{
+  
+  popup && <div className="  h-screen absolute top-0 z-125 flex justify-center items-center w-full px-3 ">
 
+
+
+
+ <div className="w-full h-[30vh] bg-slate-300 px-5 rounded-xl relative">
+  <h1 className="absolute right-5 top-2 text-xl font-bold">X</h1>
+<h1 className="text-xl font-semibold w-full flex justify-center mt-3">Your Referral link</h1>
+
+
+<div>
+  <input className="w-full py-3 mt-5 rounded-xl" value = {`http://localhost:3000/registration?referee=${link}`} />
+  <button className="py-3 w-full bg-indigo-600 text-white rounded-xl font-semibold mt-5" onClick={
+    async ()=>{
+      try{
+      await navigator.clipboard.writeText(`http://localhost:3000/registration?referee=${link}`);
+      console.log('Content copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+    }
+  }>Copy</button>
+  </div>
+  </div>
+</div>
+}
       <div className="w-full h-16 bg-[#4F95FF] absolute z-10 bottom-0 flex justify-between items-center px-5">
         <h5
           className="font-bold text-white bg-emerald-300 px-2 py-2 rounded-md"
@@ -166,6 +191,7 @@ function page() {
         <h5
           className="font-bold text-white "
           onClick={() => {
+            alert(JSON.stringify(navigator.canShare))
             if (navigator.share) {
               navigator
                 .share({

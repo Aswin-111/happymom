@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import axios from "@/app/instance"
+
 
 function Registration() {
   const [link, setLink] = useState("");
@@ -15,18 +16,18 @@ function Registration() {
   const emailRef = useRef("");
 
   useEffect(() => {
-    // (async function (){
-    //     if(location.href.includes("?")){
-    //         const url = location.href.split("?")[1].split("=")[1]
-    //         console.log(url,`${process.env.NEXT_PUBLIC_BASE_URL}/users/reference?referee=${url}`);
-    //         const result = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/reference?referee=${url}`)
-    //         setLink(result.data.user_data.link)
-    //         setReferer(result.data.parent_subscriber.name);
-    //     }
-    //     else{
-    //         return window.location.href = "/"
-    //     }
-    // })()
+    (async function (){
+        if(location.href.includes("?")){
+            const url = location.href.split("?")[1].split("=")[1]
+            console.log(url,`${process.env.NEXT_PUBLIC_BASE_URL}/users/reference?referee=${url}`);
+            const result = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/reference?referee=${url}`)
+            setLink(result.data.user_data.link)
+            setReferer(result.data.parent_subscriber.name);
+        }
+        else{
+            return window.location.href = "/"
+        }
+    })()
   }, []);
 
   return (
@@ -93,7 +94,11 @@ function Registration() {
                       refference_id: link,
                     }
                   );
-                  console.log(response);
+                  console.log(response)
+                  
+                  if(response.data){
+                    location.href = '/login'
+                  }
                 })();
               }
             }}

@@ -4,13 +4,37 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 function Wallet() {
  
+  
+  const [wallet,setWallet]=useState([])
     const router = useRouter()
 
    
 
-    useEffect(()=>{
-
-
+    useEffect(() => {
+      (async function () {
+        try{
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/walletDetails`,
+          {
+            subscriber_id: "10001",
+          }
+        );
+  
+        // console.log(response.data);
+        console.log(response.data)
+        
+        setWallet(response.data);
+        // console.log(wallet);
+        // let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
+        // setLink(linkfromjs);
+        // console.log([...response.data.subordinate_data], "results");
+        // setUsersData({ ...results });
+        // setSubordinateData([...response.data.subordinate_data]);
+      }
+      catch(err){
+        console.log(err)
+      }
+      })();
     },[])
 
   return (
@@ -99,132 +123,23 @@ function Wallet() {
             </thead>
         
             <tbody>
-            <tr className="w-full h-11  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
-                    <tr className="w-full h-16  ">
-                      <td className="text-[0.6rem] text-black">Romario</td>
-                      <td className="text-[0.6rem] text-black">Shaji</td>
-                      <td className="text-[0.6rem] text-black">07-04-24</td>
-                      <td className="text-[0.6rem] text-black">10000</td>
-                    </tr>
+
+            {wallet.map((i, ind) => {
+                      return (
+
+                        <tr className="w-full h-11  ">
+                        <td className="text-[0.6rem] text-black">{i.description}</td>
+                        <td className="text-[0.6rem] text-black">Shaji</td>
+                        <td className="text-[0.6rem] text-black">07-04-24</td>
+                        <td className="text-[0.6rem] text-black">{i.credit}</td>
+                      </tr>
+
+                      )
+                    }
+                  )
+}
+           
+                   
 
             </tbody>
           </table>

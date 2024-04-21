@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import axios from "@/app/instance"
 import Image from "next/image";
 import editbtn from '../../../../public/edit.png'
 import React, { useEffect, useState } from "react";
