@@ -135,34 +135,7 @@ function page() {
           </div>
         </div>
       </div>
-{
-  
-  popup && <div className="  h-screen absolute top-0 z-125 flex justify-center items-center w-full px-3 ">
 
-
-
-
- <div className="w-full h-[30vh] bg-slate-300 px-5 rounded-xl relative">
-  <h1 className="absolute right-5 top-2 text-xl font-bold">X</h1>
-<h1 className="text-xl font-semibold w-full flex justify-center mt-3">Your Referral link</h1>
-
-
-<div>
-  <input className="w-full py-3 mt-5 rounded-xl" value = {`http://localhost:3000/registration?referee=${link}`} />
-  <button className="py-3 w-full bg-indigo-600 text-white rounded-xl font-semibold mt-5" onClick={
-    async ()=>{
-      try{
-      await navigator.clipboard.writeText(`http://localhost:3000/registration?referee=${link}`);
-      console.log('Content copied to clipboard');
-    } catch (err) {
-      console.error('Failed to copy: ', err);
-    }
-    }
-  }>Copy</button>
-  </div>
-  </div>
-</div>
-}
       <div className="w-full h-16 bg-[#4F95FF] absolute z-10 bottom-0 flex justify-between items-center px-5">
         <h5
           className="font-bold text-white bg-emerald-300 px-2 py-2 rounded-md"
@@ -191,23 +164,13 @@ function page() {
         <h5
           className="font-bold text-white "
           onClick={() => {
-            alert(JSON.stringify(navigator.canShare))
-            if (navigator.share) {
-              navigator
-                .share({
-                  title: "Sls",
-                  text: "Please register",
-
-                  url: `http://localhost:3000/registration?referee=${link}`,
-                })
-                .then(() => {
-                  console.log("Sharing was successful");
-                })
-                .catch((error) => {
-                  console.error("Sharing failed:", error);
-                });
-            } else {
-              console.error("Web Share API not supported");
+            async ()=>{
+              try{
+              await navigator.clipboard.writeText(`http://localhost:3000/registration?referee=${link}`);
+              alert('Content copied to clipboard');
+            } catch (err) {
+              console.error('Failed to copy: ', err);
+            }
             }
           }}
         >
