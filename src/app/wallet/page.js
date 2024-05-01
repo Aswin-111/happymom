@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from '@/app/instance'
 import { useRouter } from 'next/navigation'
+import { WhatsappShareButton } from "react-share"
+
 function Wallet() {
  
   
@@ -153,41 +155,38 @@ function Wallet() {
 
       </div>
 
-    <div className="w-full h-16  bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
-      <h5 className="font-bold text-white text-sm" onClick={()=>{
-        router.push('/subscriber/home')
-      }}>Home</h5>
-      <h5 className="font-bold text-white text-sm" onClick={()=>{
-        router.push('/courses')
-      }}>Courses</h5>
-      <span className='bg-emerald-300 px-2 py-2 rounded-md'>
-      <h5 className="font-bold text-white text-sm" onClick={()=>{
-        router.push('/wallet')
-      }}>Wallet</h5>
-      </span>
-      <h5 className="font-bold text-white text-sm" onClick={()=>{
-         if (navigator.share) {
-          navigator.share({
-                  title: 'Sls',
-                  text: 'Please register',
-                  
-                  url: `http://happymom.com.in/registration?referee=${link}`
-              })
-              .then(() => {
-                  console.log('Sharing was successful');
-              })
-              .catch((error) => {
-                  console.error('Sharing failed:', error);
-              });
-      } else {
-          console.error('Web Share API not supported');
-      }
-      }}>Share</h5>
-      
+      <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
+        <button
+          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
+          onClick={() => {
+            router.push("/subscriber/home");
+          }}
+        >
+          Home
+        
 
-
-
-
+</button>
+        <button
+          className="font-bold text-white text-sm"
+          onClick={() => {
+            router.push("/courses");
+          }}
+        >
+          Courses
+        </button>
+        <button
+          className="font-bold text-white text-sm"
+          onClick={() => {
+            router.push("/wallet");
+          }}
+        >
+          Wallet
+        </button>
+       
+         <WhatsappShareButton  url={`http://happymom.com.in/registration?referee=${link}`}   title = {`Hi i would like to invite you to join happymom. Please click the link below and register \n`} >
+  <button className="font-bold text-sm text-white">Share</button>
+</WhatsappShareButton> 
+       
       </div>
 
     

@@ -4,7 +4,8 @@
 
 
 "use client"
-import React from "react";
+
+import {useState} from "react";
 
 
 import { useRouter } from "next/navigation";
@@ -13,7 +14,7 @@ import toddler from '../../../public/toddler.png'
 import preschool from '../../../public/preschool.png'
 import teenagers from '../../../public/teenagers.png'
 
-import gp from '../../../public/gp.png'
+import { WhatsappShareButton} from "react-share"
 
 import Image from 'next/image'
 
@@ -22,6 +23,8 @@ import Image from 'next/image'
 
 
 function Courses() {
+  const [link, setLink] = useState("");
+
   const router = useRouter()
   return (
     <div>
@@ -111,43 +114,38 @@ height = {90}
       
 
      
-      <div className="w-full h-16  bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
-      <h5 className="font-bold text-white text-sm" onClick={()=>{
-        router.push('/subscriber/home')
-      }}>Home</h5>
-      <h5 className="font-bold text-white text-sm px-2 py-2 bg-emerald-300 rounded-md" onClick={()=>{
-        router.push('/courses')
-      }}>Courses</h5>
-    
+      <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
+        <button
+          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
+          onClick={() => {
+            router.push("/subscriber/home");
+          }}
+        >
+          Home
+        
 
-    <span>
-      <h5 className="font-bold text-white text-sm" onClick={()=>{
-        router.push('/wallet')
-      }}>Wallet</h5>
-      </span>
-      <h5 className="font-bold text-white text-sm" onClick={()=>{
-         if (navigator.share) {
-          navigator.share({
-                  title: 'Sls',
-                  text: 'Please register',
-                  
-                  url: `http://localhost:3000/registration?referee=${link}`
-              })
-              .then(() => {
-                  console.log('Sharing was successful');
-              })
-              .catch((error) => {
-                  console.error('Sharing failed:', error);
-              });
-      } else {
-          console.error('Web Share API not supported');
-      }
-      }}>Share</h5>
-      
-
-
-
-
+</button>
+        <button
+          className="font-bold text-white text-sm"
+          onClick={() => {
+            router.push("/courses");
+          }}
+        >
+          Courses
+        </button>
+        <button
+          className="font-bold text-white text-sm"
+          onClick={() => {
+            router.push("/wallet");
+          }}
+        >
+          Wallet
+        </button>
+       
+         <WhatsappShareButton  url={`http://happymom.com.in/registration?referee=${link}`}   title = {`Hi i would like to invite you to join happymom. Please click the link below and register \n`} >
+  <button className="font-bold text-sm text-white">Share</button>
+</WhatsappShareButton> 
+       
       </div>
 
     </div>
