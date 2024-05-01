@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import chip from "../../../../public/chip.png";
 import Image from "next/image";
+import { WhatsappShareButton} from "react-share"
 function page() {
   const [users_data, setUsersData] = useState({});
   const [subordinate_data, setSubordinateData] = useState([]);
@@ -93,7 +94,8 @@ function page() {
             </div>
           </div>
         </div>
-
+       
+     
         <div className="flex flex-col  overflow-y-scroll ">
           <div className="overflow-x-hidden  sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -135,47 +137,41 @@ function page() {
           </div>
         </div>
       </div>
-
+      
       <div className="w-full h-16 bg-[#4F95FF] absolute z-10 bottom-0 flex justify-between items-center px-5">
-        <h5
+        <button
           className="font-bold text-white bg-emerald-300 px-2 py-2 rounded-md"
           onClick={() => {
             router.push("/subscriber/home");
           }}
         >
           Home
-        </h5>
-        <h5
-          className="font-bold text-white "
+        
+
+</button>
+        <button
+          className="font-bold text-white cursor-pointer"
           onClick={() => {
             router.push("/courses");
           }}
         >
           Courses
-        </h5>
-        <h5
+        </button>
+        <button
           className="font-bold text-white "
           onClick={() => {
             router.push("/wallet");
           }}
         >
           Wallet
-        </h5>
-        <h5
+        </button>
+        <button
           className="font-bold text-white "
-          onClick={() => {
-            async ()=>{
-              try{
-              await navigator.clipboard.writeText(`http://localhost:3000/registration?referee=${link}`);
-              alert('Content copied to clipboard');
-            } catch (err) {
-              console.error('Failed to copy: ', err);
-            }
-            }
-          }}
         >
-          Share
-        </h5>
+         <WhatsappShareButton  url={`http://192.168.98.251:3000/registration?referee=${link}`}   title = {`Hi i would like to invite you to join happymom. Please click the link below and register`} className="w-10 h-10" >
+  Share
+</WhatsappShareButton> 
+        </button>
       </div>
     </div>
   );

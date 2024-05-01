@@ -14,15 +14,19 @@ axiosInstance.interceptors.request.use(
     const token = sessionStorage.getItem('token');
     
     // If token exists, add it to the request headers
+    console.log(config,"config")
     console.log(location.href,location.href.includes("registration"));
     if (token ) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     else{
         
-        if(!location.href.includes("registration") || !location.href.includes("login")){
-            // location.href = "/login"
-        }
+      if (!location.href.includes("registration") && !location.href.includes("registration")) {
+        // Redirect to the login page
+        return location.href = "/login";
+        console.log("login", config.url.includes("registration"));
+    }
+    
     }
     
     return config;

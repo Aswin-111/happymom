@@ -55,6 +55,19 @@ function Registration() {
             placeholder="Mobile Number"
             className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-md border-2 border-black w-full py-2  "
             ref={mobileRef}
+
+            onChange={(e) =>{
+              const value = e.target.value 
+
+
+              (async function (){
+                const response = await axios.post(
+                  `${process.env.NEXT_PUBLIC_BASE_URL}/users/checkAvailability`,{
+ 
+                    
+                  });
+              })
+            }}
           />
 
           <input

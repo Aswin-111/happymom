@@ -1,11 +1,12 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
-import axios from 'axios'
+import axios from '@/app/instance'
 import { useRouter } from 'next/navigation'
 function Wallet() {
  
   
   const [wallet,setWallet]=useState([])
+  const [userwallet,setUserWallet]=useState({})
     const router = useRouter()
 
    
@@ -13,17 +14,15 @@ function Wallet() {
     useEffect(() => {
       (async function () {
         try{
-        const response = await axios.post(
+        const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BASE_URL}/walletDetails`,
-          {
-            subscriber_id: "10001",
-          }
         );
   
         // console.log(response.data);
         console.log(response.data)
         
-        setWallet(response.data);
+        setWallet(response.data.my_wallet_data);
+        setUserWallet(response.data.subscriber_data);
         // console.log(wallet);
         // let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
         // setLink(linkfromjs);
@@ -81,7 +80,13 @@ function Wallet() {
         <div className='w-[90vw] sm:w-[90vw] fixed top-24 bg-[#1EA1DA] h-[11rem] px-5 rounded-lg'>
        <div className='flex flex-col'>
         <div className='mt-5 text-xl text-white font-semibold'>
-            10000 Rupees
+            
+            
+            
+            
+            
+            
+            {userwallet.wallet_balance} Rupees
         </div>
         
         
@@ -89,7 +94,7 @@ function Wallet() {
             Total Balance
         </div>
         <div className='mt-5 text-xl text-white font-semibold'>
-            5000 Rupees
+        {userwallet.wallet_balance} Rupees
         </div>
         
         
@@ -115,7 +120,6 @@ function Wallet() {
               <tr>
             
                 <th scope="col" className=" px-5 py-4 text-[0.7rem]">Subscriber</th>
-                <th scope="col" className=" px-5 py-4 text-[0.7rem]">Referee</th>
                 <th scope="col" className=" px-5 py-4 text-[0.7rem]">Date</th>
                 <th scope="col" className=" px-5 py-4 text-[0.7rem]">Amount</th>
 
@@ -127,10 +131,9 @@ function Wallet() {
             {wallet.map((i, ind) => {
                       return (
 
-                        <tr className="w-full h-11  ">
+                        <tr className="w-full h-11  " key = {ind}>
                         <td className="text-[0.6rem] text-black">{i.description}</td>
-                        <td className="text-[0.6rem] text-black">Shaji</td>
-                        <td className="text-[0.6rem] text-black">07-04-24</td>
+                        <td className="text-[0.6rem] text-black">{i.createdAt.split("T")[0]}</td>
                         <td className="text-[0.6rem] text-black">{i.credit}</td>
                       </tr>
 
@@ -168,7 +171,7 @@ function Wallet() {
                   title: 'Sls',
                   text: 'Please register',
                   
-                  url: `http://localhost:3000/registration?referee=${link}`
+                  url: `http://happymom.com.in/registration?referee=${link}`
               })
               .then(() => {
                   console.log('Sharing was successful');
