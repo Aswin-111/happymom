@@ -5,7 +5,7 @@
 
 "use client"
 
-import {useState} from "react";
+import {useState,useEffect} from "react";
 
 
 import { useRouter } from "next/navigation";
@@ -26,6 +26,22 @@ function Courses() {
   const [link, setLink] = useState("");
 
   const router = useRouter()
+  useEffect(() => {
+    (async function () {
+      try{
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/walletDetails`,
+      );
+
+      
+      setLink(response.data.user_data.link)
+     
+    }
+    catch(err){
+      console.log(err)
+    }
+    })();
+  },[])
   return (
     <div>
       <div className="w-full flex justify-center bg-white">
@@ -116,7 +132,7 @@ height = {90}
      
       <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
         <button
-          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
+           className="font-bold text-white text-sm"
           onClick={() => {
             router.push("/subscriber/home");
           }}
@@ -126,7 +142,7 @@ height = {90}
 
 </button>
         <button
-          className="font-bold text-white text-sm"
+          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
           onClick={() => {
             router.push("/courses");
           }}

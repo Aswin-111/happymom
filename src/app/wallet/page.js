@@ -9,6 +9,8 @@ function Wallet() {
   
   const [wallet,setWallet]=useState([])
   const [userwallet,setUserWallet]=useState({})
+
+  const [link,setLink]=useState("")
     const router = useRouter()
 
    
@@ -23,8 +25,14 @@ function Wallet() {
         // console.log(response.data);
         console.log(response.data)
         
+
+
+        
         setWallet(response.data.my_wallet_data);
         setUserWallet(response.data.subscriber_data);
+
+        
+        setLink(response.data.user_data.link)
         // console.log(wallet);
         // let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
         // setLink(linkfromjs);
@@ -157,7 +165,7 @@ function Wallet() {
 
       <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
         <button
-          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
+          className="font-bold text-white text-sm"
           onClick={() => {
             router.push("/subscriber/home");
           }}
@@ -175,7 +183,7 @@ function Wallet() {
           Courses
         </button>
         <button
-          className="font-bold text-white text-sm"
+          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
           onClick={() => {
             router.push("/wallet");
           }}
