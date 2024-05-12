@@ -118,7 +118,7 @@ function page() {
             {subordinate_data.map((i, ind) => {
               return (
                 <tr key={ind} className=" rounded-xl px-6 py-6 mt-5 ">
-                  <td className="whitespace-nowrap text-[0.7rem] max-w-[50vw] flex items-center font-semibold text-black ">
+                  <td className="whitespace-nowrap text-[0.7rem] max-w-[50vw] flex justify-center items-center font-semibold text-black ">
                     {i.name}
                   </td>
                   <td className="whitespace-nowrap text-[0.7rem]  font-semibold text-black">

@@ -34,7 +34,7 @@ function Courses() {
   }, []);
   return (
     <div>
-      <div className="w-full flex justify-center bg-white">
+      <div className="w-full flex justify-center py-6 bg-white">
         <span className="text-xl font-semibold my-5 fixed "> Courses</span>
       </div>
 
@@ -49,8 +49,9 @@ function Courses() {
 
                 router.push("https://mwpfn.on-app.in/app/oc/457782/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
               }}>
-                <Image src={course} height={125} width={150} />
-
+                <div className="h-full flex items-end">
+                <Image src={course} height={110} width={110} />
+                </div>
                 <div className="flex flex-col items-center ">
                   <span className="text-[1rem] font-semibold">Happymom</span>
 
@@ -63,7 +64,7 @@ function Courses() {
               <div></div>
 
               <div className="flex justify-between items-center px-3 rounded-md">
-                <Image src={antiage} height={125} width={150} />
+                <Image src={antiage} height={110} width={110} />
 
                 <div className="flex flex-col items-center ">
                   <span className="text-[1rem] font-semibold">Anti Aging</span>
@@ -77,7 +78,7 @@ function Courses() {
               <div></div>
 
               <div className="flex justify-between items-center px-3 rounded-md">
-                <Image src={sls} height={125} width={150} />
+                <Image src={sls} height={150} width={150} />
                 <div className="flex flex-col items-center ">
                   <span className="text-[1rem] font-semibold">SLS Mindful</span>
 
@@ -86,11 +87,11 @@ function Courses() {
               </div>
             </div>
 
-            <div className="w-full h-36 mb-10 bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
+            <div className="w-full h-36 mb-[5rem] bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
               <div></div>
 
               <div className="flex justify-between items-center px-3 rounded-md">
-                <Image src={fam} height={125} />
+                <Image src={fam} height={110} />
 
                 <div className="flex flex-col items-center ">
                   <span className="text-[1rem] font-semibold">
