@@ -11,7 +11,7 @@ axiosInstance.interceptors.request.use(
   function (config) {
     // Retrieve token from sessionStorage
    
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('sls_token');
     
     // If token exists, add it to the request headers
     console.log(config,"config")
@@ -19,13 +19,17 @@ axiosInstance.interceptors.request.use(
     if (token ) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     else{
-        
-      if (!location.href.includes("registration") && !location.href.includes("registration")) {
+        console.log("login", location.href);
+      if (location.href.includes("registration") || location.href.includes("resetpassword") || location.href.includes("readrequest")) {
         // Redirect to the login page
+        
+        console.log("login", location.href);
+      }
+      else{
         return location.href = "/login";
-        console.log("login", config.url.includes("registration"));
-    }
+      }
     
     }
     

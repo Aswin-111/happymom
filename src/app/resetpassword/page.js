@@ -25,40 +25,34 @@ function Registration() {
 
   const emailRef = useRef("");
 
+
   useEffect(() => {
     (async function () {
       if (location.href.includes("?")) {
         const url = location.href.split("?")[1].split("=")[1]
-        console.log(url, `${process.env.NEXT_PUBLIC_BASE_URL}/users/reference?referee=${url}`);
-        const result = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users/reference?referee=${url}`)
-        setLink(result.data.user_data.link)
-        setReferer(result.data.parent_subscriber.name);
+        console.log(url, `${process.env.NEXT_PUBLIC_BASE_URL}/resetpassword?resettoken=${url}`);
+        const result = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/users/readrequest`,{resettoken:url})
+
+        console.log(result);
+        setLink(result.data.request_data.request_link)
       }
       else {
-        return window.location.href = "/"
+        // return window.location.href = "/"
       }
     })()
   }, []);
+
+
+
 
   return (
     <div className="w-full h-screen px-7 flex justify-center items-center ">
       <div className="w-full  border-2 border-black rounded-lg h-[30rem] px-6 ">
         <div className="flex justify-center font-semibold text-xl ">
-          <span className="my-5">Register</span>
+          <span className="my-5">Reset your Password</span>
         </div>
 
-        <div>
-          <div>
-            <div></div>
-            <div className="w-full justify-between">
-              <div></div>
 
-              <div className="mb-3">
-                <span>Reference by : {referer}</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div className="px-0">
           <input
@@ -98,10 +92,12 @@ function Registration() {
             }}
           />
 
-          {
 
-            mobileerr && <span className="text-[#ff0000]">Mobile number already exist</span>
-          }
+{
+
+mobileerr &&
+<span className="text-[#194d19]">Mobile number is registered in happymom</span> 
+}
           <input
             placeholder="Password"
             className="placeholder:text-black placeholder:font-semibold px-3  focus:outline-blue-400 rounded-md border-2 border-black w-full py-2 mt-5 "
@@ -150,42 +146,8 @@ function Registration() {
 
           }
 
-<input
-  ref={emailRef}
-  placeholder="Email"
-  type="text"
-  className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-lg border-2 border-black w-full py-2 mt-5 "
-  onChange={(event) => {
-    console.log(event.target.value);
-    const emailtext = event.target.value;
-
-    (async function () {
-      console.log('qwerty');
-      try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/users/checkAvailability`, {
-          email: emailtext
-        });
-        console.log(response);
-
-        if (response.data.availability === "false") {
-          setEmailErr(true);
-        } else {
-          setEmailErr(false);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }}
-/>
 
 
-          {
-            emailerr&& 
-          <span className="text-[#ff0000]">This email already exist</span>
-
-          }
 
           <button
             className="font-semibold py-3 rounded-lg text-white bg-blue-400 w-full my-3"
@@ -198,13 +160,11 @@ function Registration() {
               if (password === conf) {
                 (async () => {
                   const response = await axios.post(
-                    `${process.env.NEXT_PUBLIC_BASE_URL}/users/registration`,
+                    `${process.env.NEXT_PUBLIC_BASE_URL}/users/passwordreset`,
                     {
                       mobile_number: mobile_num,
-
                       password,
-                      email,
-                      refference_id: link,
+                      resettoken: link,
                     }
                   );
                   console.log(response)
@@ -216,7 +176,7 @@ function Registration() {
               }
             }}
           >
-            Register
+            Reset Password
           </button>
         </div>
       </div>

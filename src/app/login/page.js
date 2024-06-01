@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 function Registration() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginerr, setLoginErr] = useState("");
+
 
 
 
@@ -63,47 +65,70 @@ function Registration() {
             onChange={(e) => {
               console.log(e.target.value);
               setUsername(e.target.value);
+              setLoginErr(false);
             }}
           />
 
           <input
             placeholder="Password"
+            type = "password"
             className="py-3 px-3 focus:outline-blue-400 mb-5 placeholder:text-black placeholder:font-semibold rounded-md border-2 border-black w-full"
             onChange={(e) => {
               console.log(e.target.value);
 
               setPassword(e.target.value);
+              setLoginErr(false);
             }}
           />
+ {
+            loginerr && <span className="text-[#ff0000]">Invalid user name or password...</span>
 
+          }
           <button
             className="py-3 font-semibold rounded-md text-white bg-blue-400 w-full"
             onClick={() => {
               (async () => {
+
+                try {
+                  const response = await axios.post(
+                    `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
+                    {
+                      username,
+  
+                      password,
+                    }
+                  );
+                  console.log(response.data);
+                  if (response.data.status==="success") {
+                    
+                    sessionStorage.setItem("sls_token", response.data.token);
+                     
+                   
+                    return router.push("/subscriber/home");
+                  }
+                  
+                  
+                } catch (error) {
+                  setLoginErr(true);
+                  
+                }
                 console.log(username);
                 console.log(password);
 
-                const response = await axios.post(
-                  `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
-                  {
-                    username,
 
-                    password,
-                  }
-                );
-                console.log(response.data);
-                if (response.data.status) {
-                  
-                  sessionStorage.setItem("token", response.data.token);
-                   
-                 
-                  return router.push("/subscriber/home");
-                }
               })();
             }}
           >
             Login
           </button>
+
+
+          <a href="subscriber/resetpassword"
+            className="mt- font-semibold  text-blue  w-full"
+            
+          >
+            Reset Password
+          </a>
         </div>
       </div>
     </div>

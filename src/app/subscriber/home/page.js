@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import chip from "../../../../public/chip.png";
 import Image from "next/image";
-import { WhatsappShareButton} from "react-share"
+import { WhatsappShareButton } from "react-share"
 function page() {
   const [users_data, setUsersData] = useState({});
   const [subordinate_data, setSubordinateData] = useState([]);
@@ -16,22 +16,22 @@ function page() {
   const router = useRouter()
   useEffect(() => {
     (async function () {
-      try{
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/home`);
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/home`);
 
-      console.log(response.data);
-      // console.log(response.data.subordinate_data)
-      let results = JSON.parse(JSON.stringify(response.data.subscriber_data));
-      let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
-      setLink(linkfromjs);
-      console.log([...response.data.subordinate_data], "results");
-      setUsersData({ ...results });
-      setSubordinateData([...response.data.subordinate_data]);
-    }
-    catch(err){
-      console.log(err)
-    }
+        console.log(response.data);
+        // console.log(response.data.subordinate_data)
+        let results = JSON.parse(JSON.stringify(response.data.subscriber_data));
+        let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
+        setLink(linkfromjs);
+        console.log([...response.data.subordinate_data], "results");
+        setUsersData({ ...results });
+        setSubordinateData([...response.data.subordinate_data]);
+      }
+      catch (err) {
+        console.log(err)
+      }
     })();
   }, []);
   return (
@@ -60,10 +60,15 @@ function page() {
                   <a>My Courses</a>
                 </li>
                 <li>
-                  <a>Profile</a>
+                  <a href="/subscriber/userprofile">Profile</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <a onClick={() => {
+
+                    sessionStorage.removeItem("sls_token");
+                    router.push('/')
+
+                  }}> Logout</a>
                 </li>
               </ul>
             </div>
@@ -97,45 +102,45 @@ function page() {
             </div>
           </div>
         </div>
-       
-     
+
+
         <div className="flex flex-col overflow-y-scroll">
-  <div className="overflow-x-hidden max-h-[45vh]">
-    <div className="inline-block min-w-full py-2">
-      <div className="">
-        <table className="min-w-full text-center text-sm font-light text-surface dark:text-white">
-          <thead className="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800 py-0 sticky top-0 z-10">
-            <tr>
-              <th scope="col" className="">
-                Name
-              </th>
-              <th scope="col" className="">
-                Role
-              </th>
-            </tr>
-          </thead>
-          <tbody className="">
-            {subordinate_data.map((i, ind) => {
-              return (
-                <tr key={ind} className=" rounded-xl px-6 py-6 mt-5 ">
-                  <td className="whitespace-nowrap text-[0.7rem] max-w-[50vw] flex justify-center items-center font-semibold text-black ">
-                    {i.name}
-                  </td>
-                  <td className="whitespace-nowrap text-[0.7rem]  font-semibold text-black">
-                    Manager
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+          <div className="overflow-x-hidden max-h-[45vh]">
+            <div className="inline-block min-w-full py-2">
+              <div className="">
+                <table className="min-w-full text-center text-sm font-light text-surface dark:text-white">
+                  <thead className="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800 py-0 sticky top-0 z-10">
+                    <tr>
+                      <th scope="col" className="">
+                        Name
+                      </th>
+                      <th scope="col" className="">
+                        Role
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {subordinate_data.map((i, ind) => {
+                      return (
+                        <tr key={ind} className=" rounded-xl px-6 py-6 mt-5 ">
+                          <td className="whitespace-nowrap text-[0.7rem] max-w-[50vw] flex justify-center items-center font-semibold text-black ">
+                            {i.name}
+                          </td>
+                          <td className="whitespace-nowrap text-[0.7rem]  font-semibold text-black">
+                            Manager
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
-      
+
       <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
         <button
           className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
@@ -144,9 +149,9 @@ function page() {
           }}
         >
           Home
-        
 
-</button>
+
+        </button>
         <button
           className="font-bold text-white text-sm"
           onClick={() => {
@@ -163,11 +168,11 @@ function page() {
         >
           Wallet
         </button>
-       
-         <WhatsappShareButton  url={`http://happymom.com.in/registration?referee=${link}`}   title = {`Hi i would like to invite you to join happymom. Please click the link below and register \n`} >
-  <button className="font-bold text-sm text-white">Share</button>
-</WhatsappShareButton> 
-       
+
+        <WhatsappShareButton  url={`http://happymom.com.in/registration?referee=${link}`} title={`Hi i would like to invite you to join happymom. Please click the link below and register \n`} >
+          <span className="font-bold text-sm text-white" >Share</span>
+        </WhatsappShareButton>
+
       </div>
     </div>
   );

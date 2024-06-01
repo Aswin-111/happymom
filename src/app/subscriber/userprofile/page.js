@@ -109,7 +109,14 @@ function page() {
 
 <div className = "mt-[23vw] px-5 max-h-[100vh] overflow-y-scroll overflow-x-hidden">
   <div className="mb-5 w-full flex justify-between">
-    <button className="px-5 py-1 bg-slate-500 rounded-md text-white ">Home</button>
+  <button
+          className="px-5 py-1 bg-slate-500 rounded-md text-white "
+          onClick={() => {
+            router.push("/subscriber/home");
+          }}
+        >
+          Home
+        </button>
     <button className="px-5 py-1 bg-slate-500 rounded-md text-white " onClick = {()=>router.push('/subscriber/editprofile')}>Edit</button>
   </div>
 <div className = "         h-[11vh] border-2 border-[#2AA2E6] rounded-md px-3 flex justify-between items-center shadow-lg">

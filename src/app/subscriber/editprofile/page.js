@@ -18,7 +18,8 @@ function page() {
   const [housename, setHouseName] = useState("");
 
   const [street, setStreet] = useState("");
-  const [letter, setLetter] = useState("");
+  const [place, setPlace] = useState("");
+  const [po, setPo] = useState("");
 
   const [pin, setPin] = useState("");
 
@@ -34,6 +35,10 @@ function page() {
 
   const [account_holder_name, setAccountHolderName] = useState("");
   const [toggle, setToggle] = useState(false);
+  const [toast, setToast] = useState(false);
+  const [toastText, setToastText] = useState("");
+
+
 
   const [ifsc, setIfsc] = useState("");
   useEffect(() => {
@@ -46,7 +51,59 @@ function page() {
       console.log(response);
       setProfile(response.data.my_data);
     })();
-  }, []);
+  }, [toast]);
+
+
+  async function handleUpdate() {
+
+    try {
+
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/update_me`, {
+
+        name: name ? name : profile.name,
+        dob: dob ? dob : profile.dob,
+        adhaar_num: aadhar ? aadhar : profile.aadhar,
+        pan_num: pan ? pan : profile.pan,
+        house_name: housename ? housename : profile.housename,
+        street: street ? street : profile.street,
+        place: place ? place : profile.place,
+        po: po ? po : profile.po,
+
+
+        pin: pin ? pin : profile.pin,
+        district: district ? district : profile.district,
+        state: state ? state : profile.state,
+        country: country ? country : profile.country,
+        account_num: account_num ? account_num : profile.account_num,
+        bank_name: bank_name ? bank_name : profile.bank_name,
+        account_holder_name: account_holder_name ? account_holder_name : profile.account_holder_name,
+        ifsc_code: ifsc ? ifsc : profile.ifsc,
+      });
+
+    
+
+      
+      
+      
+      console.log(response);
+      
+      if(response.data.status==="success"){
+        
+        setToggle(false);
+        setToast(true)
+        setToastText("Successfuly Updated...");
+
+        setTimeout(() => {
+          setToast(false);
+        }, 5000);
+
+      }
+    } catch (error) {
+      setToastText("Failed to update details...")
+    }
+
+
+  }
   // account_holder_name
   // account_num
 
@@ -91,22 +148,33 @@ function page() {
 
   return (
     <div className="w-full max-h-screen h-screen overflow-y-scroll">
-      <div className="  ">
-        {/* popup */}
+      {toast&&(
+        <div className="toast toast-middle toast-center z-50" >
+        <div className="alert alert-info">
+          <span>{toastText}</span>
+        </div>
+        
+      </div>
+      )}
+      {toggle && (
         <div className="w-full h-[100vh] bg-slate-50 filter z-50 absolute top-0 flex justify-center items-center px-5">
           <div className="w-full h-[30vh] bg-slate-400  shadow">
             <div className="w-full bg-indigo-500 py-5 shadow flex justify-center items-center font-semibold text-white">
               Confirm Updating
             </div>
-            
+
             <div className="w-full  flex px-7 justify-between items-center mt-[3rem]">
-              
-              <button className="px-5 py-4 bg-red-500 text-white font-semibold rounded-md">Cancel</button>
-              <button className="px-5 py-4 bg-indigo-500 text-white font-semibold rounded-md">Update</button>
+
+              <button className="px-5 py-4 bg-red-500 text-white font-semibold rounded-md" onClick={() => setToggle(false)}>Cancel</button>
+              <button className="px-5 py-4 bg-indigo-500 text-white font-semibold rounded-md" onClick={handleUpdate} >Update</button>
             </div>
           </div>
         </div>
+      )}
+      {/* popup */}
+      <div className="  ">
         {/* popup */}
+
         <div className="w-full px-5 absolute bg-white  flex justify-between items-center pt-5">
           <div className="text-xl font-bold">Happymom</div>
           <div className="drawer drawer-end w-[2rem]">
@@ -212,6 +280,17 @@ function page() {
             setStreet(e.target.value);
           }}
         />
+        <TextField
+          id="outlined-basic"
+          label="Place"
+          variant="outlined"
+          className="w-full font-semibold mt-5 text-black"
+          defaultValue={`${profile.place && profile.place}`}
+          onChange={(e) => {
+            setPlace(e.target.value);
+          }}
+        />
+
 
         <TextField
           id="outlined-basic"
@@ -220,7 +299,7 @@ function page() {
           className="w-full font-semibold mt-5 text-black"
           defaultValue={`${profile.po && profile.po}`}
           onChange={(e) => {
-            setLetter(e.target.value);
+            setPo(e.target.value);
           }}
         />
 
@@ -292,9 +371,8 @@ function page() {
           label="Account Holder"
           variant="outlined"
           className="mt-5 w-full font-semibold text-black"
-          defaultValue={`${
-            profile.account_holder_name && profile.account_holder_name
-          }`}
+          defaultValue={`${profile.account_holder_name && profile.account_holder_name
+            }`}
           onChange={(e) => {
             setAccountHolderName(e.target.value);
           }}
@@ -312,7 +390,7 @@ function page() {
         />
       </div>
       <div className="w-full px-5 mt-3">
-        <button className="py-2 w-full          bg-[#4E95FF] font-semibold text-white rounded-md">
+        <button onClick={() => setToggle(true)} className="py-2 w-full          bg-[#4E95FF] font-semibold text-white rounded-md">
           Update
         </button>
       </div>

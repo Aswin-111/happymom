@@ -71,29 +71,34 @@ function Wallet() {
       </div>
 
       <div>
-        <div className="flex justify-center ">
-          <div className="w-[90vw] sm:w-[90vw] fixed top-24 bg-[#1EA1DA] h-[11rem] px-5 rounded-lg">
-            <div className="flex flex-col">
-              <div className="mt-5 text-xl text-white font-semibold">
-                {Number(userwallet.wallet_balance).toFixed(2)} Rupees
+        <div className="flex justify-center items-center text-sm">
+          <div className="w-[90vw] sm:w-[90vw] fixed top-24 bg-[#1EA1DA] h-[9rem] px-5 rounded-lg">
+            <div className="flex flex-col justify-center py-3">
+            <div className="mt-1 text-[1rem] text-white font-semibold">
+                {Number(userwallet.wallet_balance).toFixed(2)} ₹
               </div>
 
-              <div className="text-white">Total Balance</div>
-              <div className="mt-5 text-xl text-white font-semibold">
-                {Number(userwallet.wallet_balance).toFixed(2)} Rupees
+              <div className="text-white text-sm">Gross Balance</div>
+              <div className="mt-1 text-[1rem] text-white font-semibold">
+                {Number(userwallet.wallet_balance).toFixed(2)} ₹
               </div>
 
-              <div className="text-white">Redeemable</div>
+              <div className="text-white text-sm">Total Balance</div>
+              <div className="mt-1 text-[1rem] text-white font-semibold">
+                {Number(userwallet.wallet_balance).toFixed(2)} ₹
+              </div>
+
+              <div className="text-white ">Redeemable</div>
             </div>
           </div>
         </div>
 
-        <div className="fixed flex flex-col max-w-full min-w-full  max-h-[16rem]  overflow-y-scroll  top-72 ">
+        <div className="fixed flex flex-col max-w-full  min-w-full  max-h-[42vh]   overflow-y-scroll  top-64 ">
           <div className="overflow-x-hidden  sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
               <div className="">
                 <table className="min-w-full text-center  text-sm font-light text-surface dark:text-white">
-                  <thead className="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
+                  <thead className="      sticky border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
                     <tr>
                       <th scope="col" className=" px-5 py-4 text-[0.7rem]">
                         Subscriber
@@ -158,7 +163,7 @@ function Wallet() {
         </button>
 
         <WhatsappShareButton
-          url={`http://happymom.com.in/registration?referee=${link}`}
+          url={`https://happymom.com.in/registration?referee=${link}`}
           title={`Hi i would like to invite you to join happymom. Please click the link below and register \n`}
         >
           <button className="font-bold text-sm text-white">Share</button>
