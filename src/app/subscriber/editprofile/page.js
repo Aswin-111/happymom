@@ -222,7 +222,7 @@ function page() {
           label="Name"
           variant="outlined"
           className="w-full font-semibold mt-3 text-black"
-          defaultValue={`${profile.name && profile.name}`}
+          defaultValue={`${profile.name && profile.name }`}
           onChange={(e) => {
             console.log(e.target.value);
           }}
@@ -232,7 +232,7 @@ function page() {
           label="DOB"
           variant="outlined"
           className="w-full font-semibold mt-5  text-black"
-          defaultValue={`${profile.name && profile.dob}`}
+          defaultValue={`${profile.dob && profile.dob}`}
           onChange={(e) => {
             setDob(e.target.value);
           }}

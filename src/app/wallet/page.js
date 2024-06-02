@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "@/app/instance";
 import { useRouter } from "next/navigation";
-import { WhatsappShareButton } from "react-share";
+import BottomNavbar from "@/app/(components)/BottomNavbar";
 
 function Wallet() {
   const [wallet, setWallet] = useState([]);
@@ -23,8 +23,6 @@ function Wallet() {
 
         setWallet(response.data.my_wallet_data);
         setUserWallet(response.data.subscriber_data);
-
-        setLink(response.data.user_data.link);
         // console.log(wallet);
         // let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
         // setLink(linkfromjs);
@@ -137,37 +135,7 @@ function Wallet() {
       </div>
 
       <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
-        <button
-          className="font-bold text-white text-sm"
-          onClick={() => {
-            router.push("/subscriber/home");
-          }}
-        >
-          Home
-        </button>
-        <button
-          className="font-bold text-white text-sm"
-          onClick={() => {
-            router.push("/courses");
-          }}
-        >
-          Courses
-        </button>
-        <button
-          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
-          onClick={() => {
-            router.push("/wallet");
-          }}
-        >
-          Wallet
-        </button>
-
-        <WhatsappShareButton
-          url={`https://happymom.com.in/registration?referee=${link}`}
-          title={`Hi i would like to invite you to join happymom. Please click the link below and register \n`}
-        >
-          <button className="font-bold text-sm text-white">Share</button>
-        </WhatsappShareButton>
+      <BottomNavbar />
       </div>
     </div>
   );

@@ -3,11 +3,13 @@
 import axios from "@/app/instance"
 
 import React, { useEffect, useState } from "react";
-
-import { useRouter } from "next/navigation";
-import chip from "../../../../public/chip.png";
 import Image from "next/image";
-import { WhatsappShareButton } from "react-share"
+import { useRouter } from "next/navigation";
+
+
+import chip from "../../../../public/chip.png";
+
+import BottomNavbar from "@/app/(components)/BottomNavbar";
 function page() {
   const [users_data, setUsersData] = useState({});
   const [subordinate_data, setSubordinateData] = useState([]);
@@ -142,37 +144,8 @@ function page() {
       </div>
 
       <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
-        <button
-          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
-          onClick={() => {
-            router.push("/subscriber/home");
-          }}
-        >
-          Home
-
-
-        </button>
-        <button
-          className="font-bold text-white text-sm"
-          onClick={() => {
-            router.push("/courses");
-          }}
-        >
-          Courses
-        </button>
-        <button
-          className="font-bold text-white text-sm"
-          onClick={() => {
-            router.push("/wallet");
-          }}
-        >
-          Wallet
-        </button>
-
-        <WhatsappShareButton  url={`http://happymom.com.in/registration?referee=${link}`} title={`Hi i would like to invite you to join happymom. Please click the link below and register \n`} >
-          <span className="font-bold text-sm text-white" >Share</span>
-        </WhatsappShareButton>
-
+       
+       <BottomNavbar  />
       </div>
     </div>
   );

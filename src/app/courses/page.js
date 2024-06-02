@@ -10,7 +10,11 @@ import hop from "../../../public/forgiveness.png";
 
 import fam from "../../../public/fam.png";
 
-import { WhatsappShareButton } from "react-share";
+
+
+
+import ta from '../../../public/ta.png'
+import BottomNavbar from "@/app/(components)/BottomNavbar";
 
 import Image from "next/image";
 
@@ -63,7 +67,11 @@ function Courses() {
             <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl mt-5 rounded-md">
               <div></div>
 
-              <div className="flex justify-between items-center px-3 rounded-md">
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("https://mwpfn.on-app.in/app/oc/234365/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
                 <Image src={antiage} height={110} width={110} />
 
                 <div className="flex flex-col items-center ">
@@ -77,20 +85,28 @@ function Courses() {
             <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl mt-5 rounded-md">
               <div></div>
 
-              <div className="flex justify-between items-center px-3 rounded-md">
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("https://mwpfn.on-app.in/app/oc/208923/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
                 <Image src={sls} height={150} width={150} />
                 <div className="flex flex-col items-center ">
-                  <span className="text-[1rem] font-semibold">SLS Mindful</span>
+                  <span className="text-[1rem] font-semibold">SLS Mindful Yoganidra</span>
 
                   <span className="text-[1rem] font-semibold">600 RS</span>
                 </div>
               </div>
             </div>
 
-            <div className="w-full h-36 mb-[5rem] bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
+            <div className="w-full h-36  bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
               <div></div>
 
-              <div className="flex justify-between items-center px-3 rounded-md">
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("https://mwpfn.on-app.in/app/oc/207244/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
                 <Image src={fam} height={110} />
 
                 <div className="flex flex-col items-center ">
@@ -102,42 +118,48 @@ function Courses() {
                 </div>
               </div>
             </div>
+
+            <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl mt-5 rounded-md">
+              <div></div>
+
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("https://mwpfn.on-app.in/app/oc/208923/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
+                <Image src={sls} height={150} width={150} />
+                <div className="flex flex-col items-center ">
+                  <span className="text-[1rem] font-semibold"></span>
+
+                  <span className="text-[1rem] font-semibold">600 RS</span>
+                </div>
+              </div>
+            </div>
+            <div className="w-full h-36 mb-[5rem] bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
+              <div></div>
+
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("ttps://mwpfn.on-app.in/app/oc/198305/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
+                <Image src={ta} height={110} />
+
+                <div className="flex flex-col items-center ">
+                  <span className="text-[1rem] font-semibold">
+                    Transactional analysis
+                  </span>
+
+                  <span className="text-[1rem] font-semibold">2000 RS</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
-        <button
-          className="font-bold text-white text-sm"
-          onClick={() => {
-            router.push("/subscriber/home");
-          }}
-        >
-          Home
-        </button>
-        <button
-          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
-          onClick={() => {
-            router.push("/courses");
-          }}
-        >
-          Courses
-        </button>
-        <button
-          className="font-bold text-white text-sm"
-          onClick={() => {
-            router.push("/wallet");
-          }}
-        >
-          Wallet
-        </button>
-
-        <WhatsappShareButton
-          url={`http://happymom.com.in/registration?referee=${link}`}
-          title={`Hi i would like to invite you to join happymom. Please click the link below and register \n`}
-        >
-          <button className="font-bold text-sm text-white">Share</button>
-        </WhatsappShareButton>
+      <BottomNavbar />
       </div>
     </div>
   );

@@ -4,6 +4,11 @@ import axios from "axios"
 
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+import view from '../../../public/view.png'
+import hide from '../../../public/hide.png'
+
 function Registration() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +34,7 @@ function Registration() {
 
   
   const [hookform,setHooks] = useState()
+  const [show,setShow] = useState("view")
   const router = useRouter();
   useEffect(() => {
     // (async function (){
@@ -68,10 +74,10 @@ function Registration() {
               setLoginErr(false);
             }}
           />
-
+        <div className="flex relative">
           <input
             placeholder="Password"
-            type = "password"
+            type = {show === "view" ? "password":"text"}
             className="py-3 px-3 focus:outline-blue-400 mb-5 placeholder:text-black placeholder:font-semibold rounded-md border-2 border-black w-full"
             onChange={(e) => {
               console.log(e.target.value);
@@ -80,6 +86,22 @@ function Registration() {
               setLoginErr(false);
             }}
           />
+         
+          <Image src = {show === "view" ? view : hide} height = {25} width = {25} className="absolute right-5 top-3" onClick = {()=>{
+            if(show === "view"){
+              setShow("hide")
+            }
+
+
+
+
+            
+            
+            else{
+              setShow("show")
+            }
+          }} />
+          </div>
  {
             loginerr && <span className="text-[#ff0000]">Invalid user name or password...</span>
 
