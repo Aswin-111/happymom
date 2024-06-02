@@ -1,8 +1,18 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import axios from "@/app/instance";
+
 import { useRouter } from "next/navigation";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 import BottomNavbar from "@/app/(components)/BottomNavbar";
+import Ham from "../(components)/Ham";
 
 function Wallet() {
   const [wallet, setWallet] = useState([]);
@@ -37,37 +47,13 @@ function Wallet() {
 
   return (
     <div className="max-w-[100%] overflow-hidden">
-      <div>
-        <div className="w-full px-5 fixed  flex justify-between items-center pt-5">
-          <div className="text-xl font-bold">Happymom</div>
-          <div className="drawer drawer-end w-[2rem]">
-            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content w-[2rem]">
-              <label htmlFor="my-drawer-4" className="flex flex-col">
-                <div className="w-[2.3rem] h-[0.3rem] bg-black rounded-md"></div>
-                <div className="w-[2.3rem] h-[0.3rem] bg-black rounded-md mt-2"></div>
-                <div className="w-[2.3rem] h-[0.3rem] bg-black rounded-md mt-2"></div>
-              </label>
-            </div>
-            <div className="drawer-side z-100">
-              <label
-                htmlFor="my-drawer-4"
-                aria-label="close sidebar"
-                className="drawer-overlay"
-              ></label>
-              <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                <li className="">
-                  <a>My Courses</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      
+<div>
+        <Ham/>
       </div>
-
+      <div className="w-full flex justify-center pt-3  bg-white">
+        <span className="text-xl font-semibold   "> Wallet</span>
+      </div>
       <div>
         <div className="flex justify-center items-center text-sm">
           <div className="w-[90vw] sm:w-[90vw] fixed top-24 bg-[#1EA1DA] h-[9rem] px-5 rounded-lg">
@@ -95,7 +81,7 @@ function Wallet() {
           <div className="overflow-x-hidden  sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
               <div className="">
-                <table className="min-w-full text-center  text-sm font-light text-surface dark:text-white">
+                {/* <table className="min-w-full text-center  text-sm font-light text-surface dark:text-white">
                   <thead className="      sticky border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
                     <tr>
                       <th scope="col" className=" px-5 py-4 text-[0.7rem]">
@@ -127,7 +113,52 @@ function Wallet() {
                       );
                     })}
                   </tbody>
-                </table>
+                </table> */}
+                <TableContainer component={Paper}>
+      <Table className = "w-full" aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Subscriber</TableCell>
+            <TableCell>Reference</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell>Amount</TableCell>
+           
+           
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {wallet.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+
+
+                {row.description}
+              </TableCell>
+              <TableCell component="th" scope="row">
+
+
+                Reference
+              </TableCell>
+              <TableCell component="th" scope="row">
+
+
+                {row.createdAt.split("T")[0]}
+              </TableCell>
+              <TableCell component="th" scope="row">
+
+
+                {row.credit}
+              </TableCell>
+              
+           
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
               </div>
             </div>
           </div>

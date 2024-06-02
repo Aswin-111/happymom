@@ -4,6 +4,7 @@
 import axios from "@/app/instance"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Ham from "@/app/(components)/Ham";
 
 
 function page() {
@@ -72,7 +73,7 @@ function page() {
   return (
     <div className="w-full max-h-screen h-screen overflow-y-scroll">
     <div className="  ">
-    <div className="w-full px-5 absolute bg-white  flex justify-between items-center pt-5">
+    {/* <div className="w-full px-5 absolute bg-white  flex justify-between items-center pt-5">
       <div className="text-xl font-bold">Happymom</div>
       <div className="drawer drawer-end w-[2rem]">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -99,15 +100,15 @@ function page() {
           </ul>
         </div>
       </div>
-    </div>
-   
+    </div> */}
+   <Ham/>
   </div>
   
   
 
 
 
-<div className = "mt-[23vw] px-5 max-h-[100vh] overflow-y-scroll overflow-x-hidden">
+<div className = "mt-[7vh] px-5 max-h-[100vh] overflow-y-scroll overflow-x-hidden">
   <div className="mb-5 w-full flex justify-between">
   <button
           className="px-5 py-1 bg-slate-500 rounded-md text-white "

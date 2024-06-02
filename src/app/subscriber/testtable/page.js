@@ -2,9 +2,10 @@
 
 import axios from "@/app/instance"
 
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -81,7 +82,7 @@ function page() {
             <div className="inline-block min-w-full py-2">
               <div className="">
               <TableContainer component={Paper}>
-      <Table className = "w-full" aria-label="simple table">
+      <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>

@@ -35,7 +35,7 @@ function Registration() {
         setReferer(result.data.parent_subscriber.name);
       }
       else {
-        return window.location.href = "/"
+        // return window.location.href = "/"
       }
     })()
   }, []);

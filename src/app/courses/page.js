@@ -10,6 +10,7 @@ import hop from "../../../public/forgiveness.png";
 
 import fam from "../../../public/fam.png";
 
+import mindtra from "../../../public/mindtra.png";
 
 
 
@@ -19,6 +20,7 @@ import BottomNavbar from "@/app/(components)/BottomNavbar";
 import Image from "next/image";
 
 import course from "../../../public/happymom.png";
+import Ham from "../(components)/Ham";
 function Courses() {
   const [link, setLink] = useState("");
 
@@ -38,11 +40,14 @@ function Courses() {
   }, []);
   return (
     <div>
-      <div className="w-full flex justify-center py-6 bg-white">
-        <span className="text-xl font-semibold my-5 fixed "> Courses</span>
+      <div>
+        <Ham/>
+      </div>
+      <div className="w-full flex justify-center pt-3  bg-white">
+        <span className="text-xl font-semibold   "> Courses</span>
       </div>
 
-      <div className="w-full px-5 mt-16 ">
+      <div className="w-full px-5 mt-3 ">
         <div>
           <div className="max-h-80vh">
             <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl rounded-md">
@@ -119,19 +124,22 @@ function Courses() {
               </div>
             </div>
 
-            <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl mt-5 rounded-md">
+            <div className="w-full h-36  bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
               <div></div>
 
               <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
                 
 
-                router.push("https://mwpfn.on-app.in/app/oc/208923/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+                router.push("https://mwpfn.on-app.in/app/oc/198305/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
               }}>
-                <Image src={sls} height={150} width={150} />
-                <div className="flex flex-col items-center ">
-                  <span className="text-[1rem] font-semibold"></span>
+                <Image src={ta} height={110} />
 
-                  <span className="text-[1rem] font-semibold">600 RS</span>
+                <div className="flex flex-col items-center ">
+                  <span className="text-[1rem] font-semibold">
+                    Transactional analysis
+                  </span>
+
+                  <span className="text-[1rem] font-semibold">2000 RS</span>
                 </div>
               </div>
             </div>
@@ -143,11 +151,11 @@ function Courses() {
 
                 router.push("ttps://mwpfn.on-app.in/app/oc/198305/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
               }}>
-                <Image src={ta} height={110} />
+                <Image src={mindtra} height={110} />
 
                 <div className="flex flex-col items-center ">
                   <span className="text-[1rem] font-semibold">
-                    Transactional analysis
+                    Mind Trance
                   </span>
 
                   <span className="text-[1rem] font-semibold">2000 RS</span>
