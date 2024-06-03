@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { WhatsappShareButton } from "react-share"
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
 function BottomNavbar() {
   const [link, setLink] = useState("");
   const router = useRouter();
-
+  const pathname = usePathname();
   useEffect(() => {
     (async function () {
       try {
@@ -34,7 +35,7 @@ function BottomNavbar() {
   return (
    <>
    <button
-          className="font-bold text-white text-sm"
+          className={pathname.includes("/home") ? "font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md": "font-bold text-white text-sm"}
           onClick={() => {
             router.push("/subscriber/home");
           }}
@@ -42,7 +43,8 @@ function BottomNavbar() {
           Home
         </button>
         <button
-          className="font-bold text-white text-sm"
+          className= {pathname.includes("/courses") ? "font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md": "font-bold text-white text-sm"}
+         
           onClick={() => {
             router.push("/courses");
           }}
@@ -50,7 +52,8 @@ function BottomNavbar() {
           Courses
         </button>
         <button
-          className="font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md"
+         className={pathname.includes("/wallet") ? "font-bold text-white text-sm bg-emerald-300 px-2 py-2 rounded-md": "font-bold text-white text-sm"}
+         
           onClick={() => {
             router.push("/wallet");
           }}
