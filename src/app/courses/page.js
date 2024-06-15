@@ -14,6 +14,15 @@ import mindtra from "../../../public/mindtra.png";
 
 
 
+
+
+
+
+
+import speaking from "../../../public/publicspeaking.png";
+
+
+
 import ta from '../../../public/ta.png'
 import BottomNavbar from "@/app/(components)/BottomNavbar";
 
@@ -143,6 +152,27 @@ function Courses() {
                 </div>
               </div>
             </div>
+
+
+            <div className="w-full h-36  bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
+              <div></div>
+
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                setPayment(true)
+              }}>
+                <Image src={speaking} height={110} />
+
+                <div className="flex flex-col items-center ">
+                  <span className="text-[1rem] font-semibold">
+                    Public Speaking
+                  </span>
+
+                  <span className="text-[1rem] font-semibold">2000 RS</span>
+                </div>
+              </div>
+            </div>
             <div className="w-full h-36 mb-[5rem] bg-blue-400 flex flex-col justify-center text-white text-xl my-5 rounded-md">
               <div></div>
 
@@ -166,7 +196,21 @@ function Courses() {
         </div>
       </div>
 
-      <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
+
+
+
+
+
+
+
+
+
+<div className="absolute w-[100vw] h-[100vh] bg-slate-700 z-50 top-0 px-5">
+  <div className="">
+     
+  </div>
+</div>
+    <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
       <BottomNavbar />
       </div>
     </div>

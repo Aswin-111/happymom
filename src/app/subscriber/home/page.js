@@ -29,12 +29,12 @@ function page() {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/home`);
 
-        console.log(response.data);
+        // console.log(response.data);
         // console.log(response.data.subordinate_data)
         let results = JSON.parse(JSON.stringify(response.data.subscriber_data));
         let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
         setLink(linkfromjs);
-        console.log([...response.data.subordinate_data], "results");
+        // console.log([...response.data.subordinate_data], "results");
         setUsersData({ ...results });
         setSubordinateData([...response.data.subordinate_data]);
       }

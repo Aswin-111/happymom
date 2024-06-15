@@ -118,8 +118,7 @@ function Wallet() {
       <Table className = "w-full" aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Subscriber</TableCell>
-            <TableCell>Reference</TableCell>
+            <TableCell>Description</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Amount</TableCell>
            
@@ -136,11 +135,6 @@ function Wallet() {
 
 
                 {row.description}
-              </TableCell>
-              <TableCell component="th" scope="row">
-
-
-                Reference
               </TableCell>
               <TableCell component="th" scope="row">
 

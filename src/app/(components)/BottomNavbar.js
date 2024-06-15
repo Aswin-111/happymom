@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { WhatsappShareButton } from "react-share"
 import { usePathname, useRouter } from "next/navigation";
-
+import axios from "@/app/instance"
 function BottomNavbar() {
   const [link, setLink] = useState("");
   const router = useRouter();
@@ -11,16 +11,16 @@ function BottomNavbar() {
     (async function () {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/walletDetails`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/user`
         );
 
         // console.log(response.data);
-        console.log(response.data);
+        console.log(response.data,"inside ");
 
-        setWallet(response.data.my_wallet_data);
-        setUserWallet(response.data.subscriber_data);
+        // setWallet(response.data.my_wallet_data);
+        // setUserWallet(response.data.subscriber_data);
 
-        setLink(response.data.user_data.link);
+        setLink(response.data.link);
         // console.log(wallet);
         // let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
         // setLink(linkfromjs);
@@ -28,7 +28,7 @@ function BottomNavbar() {
         // setUsersData({ ...results });
         // setSubordinateData([...response.data.subordinate_data]);
       } catch (err) {
-        console.log(err);
+        console.log(err,"error");
       }
     })();
   }, []);
