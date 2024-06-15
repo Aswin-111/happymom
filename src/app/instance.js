@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
   function (config) {
-    // Retrieve token from sessionStorage
+  
    
     const token = sessionStorage.getItem('sls_token');
     

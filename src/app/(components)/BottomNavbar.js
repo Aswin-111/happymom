@@ -13,20 +13,9 @@ function BottomNavbar() {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BASE_URL}/user`
         );
-
-        // console.log(response.data);
         console.log(response.data,"inside ");
-
-        // setWallet(response.data.my_wallet_data);
-        // setUserWallet(response.data.subscriber_data);
-
         setLink(response.data.link);
-        // console.log(wallet);
-        // let linkfromjs = JSON.parse(JSON.stringify(response.data.user_data.link));
-        // setLink(linkfromjs);
-        // console.log([...response.data.subordinate_data], "results");
-        // setUsersData({ ...results });
-        // setSubordinateData([...response.data.subordinate_data]);
+        
       } catch (err) {
         console.log(err,"error");
       }
