@@ -249,7 +249,7 @@ const router = useRouter()
                       refference_id: link,
                     }
                   );
-                  // console.log(response)
+                  console.log(response)
 
                   if (response.data) {
                     location.href = '/login'
