@@ -144,7 +144,7 @@ function Registration() {
           </button>
 
 
-          <a href="subscriber/resetpassword"
+          <a href="/resetpassword"
             className="mt- font-semibold  text-blue  w-full"
             
           >

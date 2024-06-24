@@ -205,11 +205,19 @@ function Courses() {
 
 
 
-<div className="absolute w-[100vw] h-[100vh] bg-slate-700 z-50 top-0 px-5">
-  <div className="">
-     
+{/* <div className="fixed w-[100vw] h-[100vh]  z-[60] top-0 px-5 flex justify-center items-center">
+  <div className="text-white flex flex-col items-center">
+    
+    
+    
+    <div className="text-semibold font-xl flex justify-center items-center">Pay this number and send screen shot to the same number to enroll in this course</div>
+ 
+
+<div className="text-semibold text-2xl font-extrabold mt-4">940056815</div>
+<div className="text-semibold text-2xl font-extrabold mt-4">2000 Rs</div>
   </div>
-</div>
+
+</div> */}
     <div className="w-full h-16 bg-[#4F95FF] fixed z-10 bottom-0 flex justify-between items-center px-5">
       <BottomNavbar />
       </div>

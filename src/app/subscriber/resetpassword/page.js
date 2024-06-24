@@ -1,141 +1,247 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import axios from "@/app/instance"
+import axios from "@/app/instance";
+import { useRouter } from "next/navigation";
 
 
-function Registration() {
-  const [link, setLink] = useState("");
-  const [referer, setReferer] = useState("");
+function PasswordReset() {
 
-  const [mobileerr, setMobileErr] = useState(false);
-
-  const [passworderr, setPasswordErr] = useState(false);
-
-  const [confpassworderr, setConfPasswordErr] = useState(false);
+  useEffect(() => {
 
 
-  const [emailerr, setEmailErr] = useState(false);
-
-
-  const mobileRef = useRef("");
+    (async function () {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/subscriber/home`);
+          console.log(response)
+}
+      catch (err) {
+        console.log(err)
+      }
+    })()
+  })
+  const [password, setPassword] = useState({
+    passwordErr: "",
+    passwordtog: false,
+  });
+  const [pass, setPass] = useState({ passwordErr: "", passwordtog: false });
+  const [conf, setConf] = useState({ passwordErr: "", passwordtog: false });
+  const [passworderr, setPasswordErr] = useState({ passwordErr: "", passwordtog: false });
 
   const passwordRef = useRef("");
 
   const confirmRef = useRef("");
 
-  const emailRef = useRef("");
+  const currentPasswordRef = useRef("");
 
-  useEffect(() => {
-    (async function () {
-      
-    })()
-  }, []);
-
+  const router = useRouter()
   return (
-    <div className="w-full h-screen px-7 flex justify-center items-center ">
+    
+    
+    
+    
+    
+    <div className="w-full h-screen px-7 flex flex-col justify-center items-center ">
+      
+     
+      
+      <div className = "w-full flex justify-between">
+        <button
+          className="px-5 py-1 bg-slate-500 rounded-md text-white "
+          onClick={() => {
+            router.push("/subscriber/userprofile")
+          }}
+        >
+          Home
+        </button>
+
+<div></div>
+      </div>
       <div className="w-full  border-2 border-black rounded-lg h-[30rem] px-6 ">
         <div className="flex justify-center font-semibold text-xl ">
           <span className="my-5">Reset Password</span>
         </div>
 
-        <div>
-          <div>
-            <div></div>
-            <div className="w-full justify-between">
-              <div></div>
+        <input
+          ref={currentPasswordRef}
+          placeholder="Current Password"
+          type="text"
+          className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-lg border-2 border-black w-full py-2 mt-5 "
+        />
 
-             </div>
-          </div>
-        </div>
+        {password.passwordtog && (
+          <span className="text-red-600">{password.passwordErr}</span>
+        )}
 
-        <div className="px-0">
-          <input
-            placeholder="Mobile Number"
-            className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-md border-2 border-black w-full py-2  "
-            ref={mobileRef}
+        <input
+          ref={passwordRef}
+          placeholder="New password"
+          type="text"
+          className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-lg border-2 border-black w-full py-2 mt-5 "
+        />
 
-            onChange={(e) => {
-              const mobile_num = e.target.value
+        {conf.passwordtog && (
+          <span className="text-red-600">{conf.passwordErr}</span>
+        )}
 
-              if (mobile_num.length === 10) {
-                (async function () {
-                  try {
-                    const response = await axios.post(
-                      `${process.env.NEXT_PUBLIC_BASE_URL}/users/checkAvailability`, {
-                      mobile_number: mobile_num
+        <input
+          ref={confirmRef}
+          placeholder="Confirm new password"
+          type="text"
+          className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-lg border-2 border-black w-full py-2 mt-5 "
+        />
+        {conf.passwordtog && (
+          <span className="text-red-600">{pass.passwordErr}</span>
+        )}
+ {passworderr.passwordtog && (
+          <span className="text-red-600">{passworderr.passwordErr}</span>
+        )}
+        <button
+          className="font-semibold py-3 rounded-lg text-white bg-blue-400 w-full mt-7"
+          onClick={() => {
+            // if()
 
-                    });
-                    console.log(response);
+            if (!currentPasswordRef.current.value) {
+              setPassword({
+                passwordErr: "Password field is empty",
+                passwordtog: true,
+              });
+            } else if (currentPasswordRef.current.value.length < 5) {
+              setPassword({
+                passwordErr: "Five characters required",
+                passwordtog: true,
+              });
+            } else {
+              setPassword({
+                passwordErr: "",
+                passwordtog: false,
+              });
+            }
+
+            if (!passwordRef.current.value) {
+              setPass({
+                passwordErr: "Password field is empty",
+                passwordtog: true,
+              });
+            } else if (passwordRef.current.value.length < 5) {
+              setPass({
+                passwordErr: "Five characters required",
+                passwordtog: true,
+              });
+            } else {
+              setPass({
+                passwordErr: "",
+                passwordtog: false,
+              });
+            }
+
+            if (!confirmRef.current.value) {
+              setConf({
+                passwordErr: "Password field is empty",
+                passwordtog: true,
+              });
+            } else if (confirmRef.current.value.length < 5) {
+              setConf({
+                passwordErr: "Five characters required",
+                passwordtog: true,
+              });
+            } else {
+              setConf({
+                passwordErr: "",
+                passwordtog: false,
+              });
+            }
+
+            if (passwordRef.current.value != confirmRef.current.value) {
+              setConf({
+                passwordErr: "Passwords does'nt match",
+                passwordtog: true,
+              });
+              setPass({
+                passwordErr: "Passwords does'nt match",
+                passwordtog: true,
+              });
+            } else {
+              
+              (async function () {
+           try{
+console.log(currentPasswordRef.current.value, passwordRef.current.value >= 5 && confirmRef.current.value >= 5);
+                if(currentPasswordRef.current.value.length >= 5 && passwordRef.current.value.length >= 5 && confirmRef.current.value.length >= 5){
+
+                
+                const data = await axios.post(
+                  `${process.env.NEXT_PUBLIC_BASE_URL}/users/resetmypassword`,
+                  {
+                    curr: currentPasswordRef.current.value,
+                    newpassword: passwordRef.current.value,
+                  })
 
 
-                    if (response.data.availability === "false") {
 
-                      setMobileErr(true);
+              
 
-                    } else {
-                      setMobileErr(false);
-                    }
+                  
+                 
+                  
+                  
 
-                  } catch (error) {
 
-                  }
 
-                })()
+
+                
+                  router.push('/subscriber/userprofile')
+
               }
-
-            }}
-          />
-
-          {
-
-            mobileerr && <span className="text-[#2d8d52]">Mobile number available</span>
-          }
-
-
-
-<input
-  ref={emailRef}
-  placeholder="Email"
-  type="text"
-  className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-lg border-2 border-black w-full py-2 mt-5 "
- 
-/>
-
-
-
-          <button
-            className="font-semibold py-3 rounded-lg text-white bg-blue-400 w-full my-3"
-            onClick={() => {
-              const mobile_num = mobileRef.current.value;
+            }
+            catch(err){
+           
             
-              const email = emailRef.current.value;
+            
+            console.log(err.response.data,"1234");
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+              
+                
 
-              if (mobile_num.length === 10){
-                (async () => {
-                  const response = await axios.post(
-                    `${process.env.NEXT_PUBLIC_BASE_URL}/users/passwordresetrequest`,
-                    {
-                      mobile_number: mobile_num,
 
-                      email,
-                      
-                    }
-                  );
-                  console.log(response)
+                
 
-                  if (response.data.status==="email_send") {
-                    location.href = '/login'
-                  }
-                })();
-              }
-            }}
-          >
-            Send
-          </button>
-        </div>
+            setPasswordErr({
+                
+              
+                
+                
+                passwordErr : err.response.data.message,
+                
+              
+
+              
+              
+                
+                passwordtog : true
+              })
+            }
+              })()
+            }
+          }}
+        >
+          Reset Password
+        </button>
       </div>
     </div>
   );
 }
 
-export default Registration;
+export default PasswordReset;

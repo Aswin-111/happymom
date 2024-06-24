@@ -118,7 +118,8 @@ function page() {
         >
           Home
         </button>
-    <button className="px-5 py-1 bg-slate-500 rounded-md text-white " onClick = {()=>router.push('/subscriber/editprofile')}>Edit</button>
+        <button className="px-5 py-1  rounded-md text-white bg-blue-400" onClick = {()=>router.push('/subscriber/resetpassword')}>Reset Password</button>
+        <button className="px-5 py-1 bg-slate-500 rounded-md text-white " onClick = {()=>router.push('/subscriber/editprofile')}>Edit</button>
   </div>
 <div className = "         h-[11vh] border-2 border-[#2AA2E6] rounded-md px-3 flex justify-between items-center shadow-lg">
 <h1 className = "font-semibold ">

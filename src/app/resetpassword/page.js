@@ -4,55 +4,35 @@ import axios from "@/app/instance"
 
 
 function Registration() {
-  const [link, setLink] = useState("");
-  const [referer, setReferer] = useState("");
-
-  const [mobileerr, setMobileErr] = useState(false);
-
-  const [passworderr, setPasswordErr] = useState(false);
-
-  const [confpassworderr, setConfPasswordErr] = useState(false);
-
-
-  const [emailerr, setEmailErr] = useState(false);
+ const [showinfo,setShowInfo] = useState(false)
 
 
   const mobileRef = useRef("");
 
-  const passwordRef = useRef("");
-
-  const confirmRef = useRef("");
-
   const emailRef = useRef("");
-
 
   useEffect(() => {
     (async function () {
-      if (location.href.includes("?")) {
-        const url = location.href.split("?")[1].split("=")[1]
-        console.log(url, `${process.env.NEXT_PUBLIC_BASE_URL}/resetpassword?resettoken=${url}`);
-        const result = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/users/readrequest`,{resettoken:url})
-
-        console.log(result);
-        setLink(result.data.request_data.request_link)
-      }
-      else {
-        // return window.location.href = "/"
-      }
+      
     })()
   }, []);
-
-
-
 
   return (
     <div className="w-full h-screen px-7 flex justify-center items-center ">
       <div className="w-full  border-2 border-black rounded-lg h-[30rem] px-6 ">
         <div className="flex justify-center font-semibold text-xl ">
-          <span className="my-5">Reset your Password</span>
+          <span className="my-5">Reset Password</span>
         </div>
 
+        <div>
+          <div>
+            <div></div>
+            <div className="w-full justify-between">
+              <div></div>
 
+             </div>
+          </div>
+        </div>
 
         <div className="px-0">
           <input
@@ -92,60 +72,20 @@ function Registration() {
             }}
           />
 
+          {/* {
 
-{
-
-mobileerr &&
-<span className="text-[#194d19]">Mobile number is registered in happymom</span> 
-}
-          <input
-            placeholder="Password"
-            className="placeholder:text-black placeholder:font-semibold px-3  focus:outline-blue-400 rounded-md border-2 border-black w-full py-2 mt-5 "
-            ref={passwordRef}
-            onChange={(e) => {
-              const password = e.target.value
-              if (password.length < 5) {
-                setPasswordErr(true)
-
-              } else {
-
-                setPasswordErr(false)
-
-              }
-
-            }}
-
-          />
-
-          {
-            passworderr && <span className="text-[#ff0000]">password length is less than five </span>
-
-          }
+            mobileerr && <span className="text-[#2d8d52]">Mobile number available</span>
+          } */}
 
 
-          <input
-            placeholder="Confirm Password"
-            className="placeholder:text-black placeholder:font-semibold px-3  focus:outline-blue-400 rounded-md border-2 border-black w-full py-2 mt-5 "
-            ref={confirmRef}
 
-            onChange={(e) => {
-              const confirm_password = e.target.value
-
-              if (confirm_password != passwordRef.current.value) {
-                setConfPasswordErr(true)
-              } else {
-                setConfPasswordErr(false)
-
-              }
-
-            }}
-
-          />
-          {
-            confpassworderr && <span className="text-[#ff0000]">Password doesn't match</span>
-
-          }
-
+<input
+  ref={emailRef}
+  placeholder="Email"
+  type="text"
+  className="placeholder:text-black placeholder:font-semibold px-3 focus:outline-blue-400 rounded-lg border-2 border-black w-full py-2 mt-5 "
+ 
+/>
 
 
 
@@ -153,33 +93,65 @@ mobileerr &&
             className="font-semibold py-3 rounded-lg text-white bg-blue-400 w-full my-3"
             onClick={() => {
               const mobile_num = mobileRef.current.value;
-              const password = passwordRef.current.value;
-              const conf = confirmRef.current.value;
+            
               const email = emailRef.current.value;
 
-              if (password === conf) {
+              if (mobile_num.length === 10){
                 (async () => {
                   const response = await axios.post(
-                    `${process.env.NEXT_PUBLIC_BASE_URL}/users/passwordreset`,
+                    `${process.env.NEXT_PUBLIC_BASE_URL}/users/passwordresetrequest`,
                     {
                       mobile_number: mobile_num,
-                      password,
-                      resettoken: link,
+
+                      email,
+                      
                     }
                   );
                   console.log(response)
+setShowInfo(true)
 
-                  if (response.data) {
-                    location.href = '/login'
-                  }
+
+
+
+
+setTimeout(()=>{
+  setShowInfo(false)
+},5000)
+                 
+                  
                 })();
               }
             }}
           >
-            Reset Password
+            Send
           </button>
-        </div>
-      </div>
+        </div></div>
+      
+   
+  
+  
+
+  
+
+
+  {
+    showinfo&&
+      <div role="alert" className="alert alert-info absolute z-50 px-7 w-[29rem] top-[69vh]">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    className="h-6 w-6 shrink-0 stroke-current">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+  </svg>
+  <span>Please check your email inbox</span>
+</div>
+    
+  }
     </div>
   );
 }
