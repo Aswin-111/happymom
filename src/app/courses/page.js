@@ -20,6 +20,8 @@ import mindtra from "../../../public/mindtra.png";
 
 
 import speaking from "../../../public/publicspeaking.png";
+import city from "../../../public/mindful.png";
+import couples from "../../../public/couples.png";
 
 
 
@@ -65,10 +67,47 @@ function Courses() {
               <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
                 
 
+                router.push(" https://mwpfn.on-app.in/app/oc/253120/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
+                <div className="h-full flex items-end">
+                <Image src={city} height={110} width={110} />
+                </div>
+                <div className="flex flex-col items-center ">
+                  <span className="text-[1rem] font-semibold">Mindful meditation (1 year) </span>
+
+                  <span className="text-[1rem] font-semibold">200 RS</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl rounded-md mt-5">
+              <div></div>
+
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("https://mwpfn.on-app.in/app/oc/205006/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
+                <div className="h-full flex items-end">
+                <Image src={couples} height={110} width={110} />
+                </div>
+                <div className="flex flex-col items-center ">
+                  <span className="text-[1rem] font-semibold">10 Myths on Marriage </span>
+
+                  <span className="text-[1rem] font-semibold">200 RS</span>
+                </div>
+              </div>
+            </div>
+            <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl rounded-md mt-5">
+              <div></div>
+
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
                 router.push("https://mwpfn.on-app.in/app/oc/457782/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
               }}>
                 <div className="h-full flex items-end">
-                <Image src={course} height={110} width={110} />
+                <Image src={course} height={110} width={110} className="rounded-xl"/>
                 </div>
                 <div className="flex flex-col items-center ">
                   <span className="text-[1rem] font-semibold">Happymom</span>
@@ -78,6 +117,29 @@ function Courses() {
               </div>
             </div>
 
+
+            
+
+
+
+          
+            {/* <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl mt-5 rounded-md">
+              <div></div>
+
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("https://mwpfn.on-app.in/app/oc/234365/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
+                <Image src={antiage} height={110} width={110} />
+
+                <div className="flex flex-col items-center ">
+                  <span className="text-[1rem] font-semibold">Anti Aging</span>
+
+                  <span className="text-[1rem] font-semibold">600 RS</span>
+                </div>
+              </div>
+            </div> */}
             <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl mt-5 rounded-md">
               <div></div>
 
