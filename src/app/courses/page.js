@@ -20,7 +20,7 @@ import mindtra from "../../../public/mindtra.png";
 
 
 import speaking from "../../../public/publicspeaking.png";
-import city from "../../../public/mindful.png";
+import city from "../../../public/med.jpeg";
 import couples from "../../../public/couples.png";
 
 
@@ -31,7 +31,10 @@ import BottomNavbar from "@/app/(components)/BottomNavbar";
 import Image from "next/image";
 
 import course from "../../../public/happymom.png";
+
+import pre from '../../../public/premarital.jpeg'
 import Ham from "../(components)/Ham";
+
 function Courses() {
   const [link, setLink] = useState("");
 
@@ -98,6 +101,26 @@ function Courses() {
                 </div>
               </div>
             </div>
+            <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl rounded-md mt-5">
+              <div></div>
+
+              <div className="flex justify-between items-center px-3 rounded-md" onClick={()=>{
+                
+
+                router.push("https://mwpfn.on-app.in/app/oc/216530/mwpfn?utm_source%3Dwhatsapp%26utm_medium%3Dtutor-course-referral-wa%26utm_campaign%3Dcourse-overview-app")
+              }}>
+                <div className="h-full flex items-end">
+                <Image src={pre} height={110} width={110} className="rounded-xl"/>
+                </div>
+                <div className="flex flex-col items-center ">
+                  <span className="text-[0.9rem] font-semibold flex">Premarital Counselling (Islam)</span>
+
+                  <span className="text-[1rem] font-semibold">1000 RS</span>
+                </div>
+              </div>
+            </div>
+
+
             <div className="w-full h-36 bg-blue-400 flex flex-col justify-center text-white text-xl rounded-md mt-5">
               <div></div>
 
